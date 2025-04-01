@@ -1,1 +1,1 @@
-for beignner level navbar3 is easy to understanding
+for a beginner  level. navbar3 is easy to understand
