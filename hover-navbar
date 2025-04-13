@@ -1,0 +1,118 @@
+import React, { useState } from 'react';
+import logo from "../../assets/img/logo.png";
+import { Link } from 'react-router-dom';
+import { IoIosArrowDown } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
+import { FaPencilAlt } from "react-icons/fa";
+import { CiMenuFries } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
+
+const Navbar = () => {
+  const [openNav, setOpenNav] = useState(false);
+  const btnToggle = () => setOpenNav(!openNav);
+
+  const navLinks = (
+    <ul className='flex items-center gap-5 font-bold text-[#262626]'>
+      <li><Link to="/">Home</Link></li>
+
+      {/* Courses Dropdown */}
+      <li className='relative group cursor-pointer flex items-center hover:text-[#116E63]'>
+        Courses <IoIosArrowDown className='ml-1' />
+        <ul className='absolute top-8 left-0 bg-white shadow-md rounded w-48 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-20'>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/courses/web">Web Development</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/courses/graphic">Graphic Design</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/courses/seo">SEO</Link></li>
+        </ul>
+      </li>
+
+      {/* Academics Dropdown */}
+      <li className='relative group cursor-pointer flex items-center hover:text-[#116E63]'>
+        Academics <IoIosArrowDown className='ml-1' />
+        <ul className='absolute top-8 left-0 bg-white shadow-md rounded w-48 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-20'>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/academics/faculty">Faculty</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/academics/programs">Programs</Link></li>
+        </ul>
+      </li>
+
+      {/* Pages Dropdown */}
+      <li className='relative group cursor-pointer flex items-center hover:text-[#116E63]'>
+        Pages <IoIosArrowDown className='ml-1' />
+        <ul className='absolute top-8 left-0 bg-white shadow-md rounded w-48 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-20'>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/about">About Us</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/faq">FAQ</Link></li>
+        </ul>
+      </li>
+
+      {/* Admissions Dropdown */}
+      <li className='relative group cursor-pointer flex items-center hover:text-[#116E63]'>
+        Admissions <IoIosArrowDown className='ml-1' />
+        <ul className='absolute top-8 left-0 bg-white shadow-md rounded w-48 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-20'>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/admissions/apply">Apply</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/admissions/requirements">Requirements</Link></li>
+        </ul>
+      </li>
+
+      {/* Blog Dropdown */}
+      <li className='relative group cursor-pointer flex items-center hover:text-[#116E63]'>
+        Blog <IoIosArrowDown className='ml-1' />
+        <ul className='absolute top-8 left-0 bg-white shadow-md rounded w-48 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-20'>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/blog/news">News</Link></li>
+          <li className='px-4 py-2 hover:bg-gray-100'><Link to="/blog/events">Events</Link></li>
+        </ul>
+      </li>
+
+      <li><Link to="/contact">Contact</Link></li>
+
+      <li><IoSearch className='text-2xl cursor-pointer' /></li>
+
+      <li>
+        <button className='flex items-center gap-1 hover:bg-[#116E63] bg-[#FDA31B] px-3 py-2 text-white rounded-tr-[15px] rounded-bl-[10px]'>
+          <FaPencilAlt /> Apply Now
+        </button>
+      </li>
+    </ul>
+  );
+
+  return (
+    <div className='w-full md:w-[1200px] mx-auto py-2 md:py-5 px-3'>
+      <div className='flex items-center justify-between'>
+        {/* Logo */}
+        <div>
+          <img src={logo} alt="logo" className='w-44' />
+        </div>
+
+        {/* Large screen nav */}
+        <div className='hidden md:block'>
+          {navLinks}
+        </div>
+
+        {/* Mobile nav */}
+        <div className='block md:hidden relative'>
+          <div onClick={btnToggle} className='text-2xl cursor-pointer'>
+            {openNav ? <IoMdClose /> : <CiMenuFries />}
+          </div>
+
+          {openNav && (
+            <div className='absolute top-10 right-0 bg-white w-screen px-5 py-3 shadow-md z-50'>
+              <ul className='flex flex-col gap-3'>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/courses">Courses</Link></li>
+                <li><Link to="/academics">Academics</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li>
+                  <button className='flex items-center gap-1 hover:bg-[#116E63] bg-[#FDA31B] px-3 py-2 text-white rounded'>
+                    <FaPencilAlt /> Apply Now
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
+
+
